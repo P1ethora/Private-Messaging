@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/assets/css/main.css}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chat.js}"></script>
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${user.getName()}" ></h1>
+<div class="space" >
+<div class="chats" >
+    <th:block th:if="${chats.size() > 0}" th:each="chat : ${chats}" >
+        <div class="chat" th:data-th-abbr="${chat.getId()}">
+            <div class="name-user-chat" th:text="${detect.detectName(chat,user)}" ></div>
+            <div class="count-new-message" ></div>
+        </div>
+    </th:block>
+    <th:block th:unless="${chats.size() > 0}" >
+        <div>Личных сообщений нет</div>
+    </th:block>
+</div>
+<div class="users" >
+    <th:block th:each="user : ${users}" >
+
+        <div class="user" th:data-th-abbr="${user.getId()}">
+            <div class="btn-send-msg" onclick="openSendWindow(this); " >Написать сообщение</div>
+            <div class="name" th:text="${user.getName()}" ></div>
+        </div>
+
+    </th:block>
+</div>
+</div>
+</body>
+</html>
