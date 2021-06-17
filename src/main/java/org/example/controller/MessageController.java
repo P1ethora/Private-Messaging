@@ -56,10 +56,11 @@ public class MessageController {
 //TODO отработать сообщение самому себе;
         int idChat = chat.getId();
         String userActualName = user.getName();
-        String userCompanionName = userFor.getName();
+        String userCompanionName = userFor!=null ? userFor.getName() : null;
 
         EventMessage eventMessage = new EventMessage(idUserActual, idCompanion, idChat, userActualName, userCompanionName);
-        simpMessagingTemplate.convertAndSend("/topic/messages/" + idCompanion, eventMessage);
+        simpMessagingTemplate.convertAndSend("/topic/messages/" +
+                idCompanion, eventMessage);
         simpMessagingTemplate.convertAndSend("/topic/messages/" + idCompanion, message);
 
         if(idUserActual != message.getForLogin()) {

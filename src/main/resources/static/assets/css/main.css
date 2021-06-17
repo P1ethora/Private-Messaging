@@ -82,3 +82,15 @@ body {
     display: flex;
     align-items: center;
 }
+
+.message {
+    width: 400px;
+    border-radius: 5px;
+    background: #a5a5a5;
+}
+
+.another-message {
+    width: 400px;
+    border-radius: 5px;
+    background: #7fc7ff;
+}

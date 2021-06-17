@@ -87,4 +87,23 @@ let body = document.getElementsByTagName('body').item(0);
 
 function openChat(button) {
 
+    let windowMessaging = document.createElement('div');
+    windowMessaging.className = 'window-messaging';
 }
+
+function messageAnother() {
+
+    let message = document.createElement('div');
+    message.className = 'another-message';
+
+    return message;
+}
+
+function message() {
+
+    let message = document.createElement('div');
+    message.className = 'message';
+
+    return message;
+}
+

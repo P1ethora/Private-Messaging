@@ -49,15 +49,12 @@ function connectMain(id) {
                 let idFrom = data.nameFor;
 
                 let chat = findChat(idChat);
-alert('чат вышел : ' + chat)
                 if (chat === null) {
-                    alert('create chat');
                     chat = createChat(idChat, nameFrom);
                 }
 
 
                 if (id !== idFrom && idFrom !==null) {
-                    alert('Не равны ' + id + ' ' + idFrom)
                     incrementMessage(chat);
                 }
 
