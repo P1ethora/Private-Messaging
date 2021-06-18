@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="../static/assets/css/main-page.css" rel="stylesheet">
+<!--    <link rel="stylesheet" type="text/css" media="all"-->
+<!--          th:href="@{/assets/css/main.css}"/>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -30,6 +34,7 @@
             </li>
         </ul>
     </div>
+
     <div class="chat">
         <div class="chat-header">
             <img height="55px">
@@ -47,7 +52,8 @@
                         <span class="message-data-name">Vasia</span>
                     </div>
                     <div class="message other-message float-right">
-                        Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced
+                        Well I am not sure. The rest of the team is not here yet.
+                        Maybe in an hour or so? Have you faced
                         any problems at the last phase of the project?
                     </div>
                 </li>
@@ -58,7 +64,8 @@
                         <span class="message-data-time">23:34 AM, Today </span>
                     </div>
                     <div class="message my-message">
-                        Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced
+                        Well I am not sure. The rest of the team is not here yet.
+                        Maybe in an hour or so? Have you faced
                         any problems at the last phase of the project?
                     </div>
                 </li>
@@ -69,6 +76,29 @@
             <button>Send</button>
         </div>
 
+    </div>
+
+    <div class="right-panel" >
+        <div class="list-chats-header">Your Messaging</div>
+        <div class="list-chats" >
+
+            <div class="chat-element" >
+                <img height="55px" src="../static/img/uesr55.jpg" >
+                <div class="chat-element-content" >
+                    <div class="name-chat" >Oleg</div>
+                    <div class="unread-message" >Эй здаров че каво?</div>
+                </div>
+            </div>
+
+            <div class="chat-element" >
+                <img height="55px" src="../static/img/uesr55.jpg" >
+                <div class="chat-element-content" >
+                    <div class="name-chat" >Ivan</div>
+                    <div class="unread-message" >Опачки</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>
