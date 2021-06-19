@@ -1,52 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="../static/assets/css/main-page.css" rel="stylesheet">
-<!--    <link rel="stylesheet" type="text/css" media="all"-->
-<!--          th:href="@{/assets/css/main.css}"/>-->
+
+    <link rel="stylesheet" type="text/css" href="../static/fontawesome/css/all.min.css">
+
+    <!--    <link rel="stylesheet" type="text/css" media="all"-->
+    <!--          th:href="@{/assets/css/main.css}"/>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" src="../static/js/Creator.js"></script>
     <title>Title</title>
 </head>
 <body>
 <div class="container">
     <div class="left-panel">
+        <div class="user-panel">
+            <img src="../static/img/noavatar55.png">
+            <div class="profile">
+                <div class="chat-with">Vasily</div>
+                <div class="number-phone">+375292391133</div>
+            </div>
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="line"></div>
         <div class="search">
             <input placeholder="search" type="text">
-            <i class="fa fa-search"></i>
+            <!--            <i class="fa fa-search"></i>-->
         </div>
-        <ul class="users-list">
-            <li >
-                <img height="55px">
+
+        <div class="users-list">
+            <div class="user-element" onclick="openUser(this)">
+                <img src="../static/img/noavatar55.png">
                 <div class="about">
                     <div class="name">Oleg</div>
-                    <div class="status"></div>
+                    <div class="status">Online</div>
                 </div>
-            </li>
+            </div>
 
-            <li>
-                <img height="55px">
+            <div class="user-element">
+                <img src="../static/img/noavatar55.png">
                 <div class="about">
-                    <div class="name">Vasia</div>
-                    <div class="status"></div>
+                    <div class="name">Ivan</div>
+                    <div class="status">Offline</div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+
     </div>
 
     <div class="chat">
         <div class="chat-header">
-            <img height="55px">
+            <div class="back-to-chat-list" onclick="closeChat(this); openListChat()">back</div>
             <div class="chat-about">
-                <div class="chat-with">Somebody</div>
+                <div class="chat-with">Oleg</div>
+                <div class="status">Offline</div>
             </div>
-            <i class="fa fa-star"></i>
+            <img src="../static/img/noavatar55.png">
+            <!--            <i class="fa fa-star"></i>-->
         </div>
 
         <div class="chat-history">
             <ul>
-                <li >
+                <li>
                     <div class="message-data align-right">
                         <span class="message-data-time">23:39 AM, Today </span>
                         <span class="message-data-name">Vasia</span>
@@ -72,34 +89,72 @@
             </ul>
         </div>
         <div class="chat-message">
-            <textarea placeholder="type your message" ></textarea>
+            <textarea placeholder="type your message"></textarea>
             <button>Send</button>
         </div>
 
     </div>
 
-    <div class="right-panel" >
+    <div class="right-panel">
         <div class="list-chats-header">Your Messaging</div>
-        <div class="list-chats" >
+        <div class="list-chats">
 
-            <div class="chat-element" >
-                <img height="55px" src="../static/img/uesr55.jpg" >
-                <div class="chat-element-content" >
-                    <div class="name-chat" >Oleg</div>
-                    <div class="unread-message" >Эй здаров че каво?</div>
+            <div class="chat-element" onclick="openChat(this); closeRightPanel()">
+                <img src="../static/img/noavatar55.png">
+                <div class="chat-element-content">
+                    <div class="chat-element-data">
+                        <div class="name-chat">Oleg</div>
+                        <div class="date-chat">вчера</div>
+                    </div>
+                    <div class="unread-message">Эй здаров че каво?</div>
                 </div>
             </div>
 
-            <div class="chat-element" >
-                <img height="55px" src="../static/img/uesr55.jpg" >
-                <div class="chat-element-content" >
-                    <div class="name-chat" >Ivan</div>
-                    <div class="unread-message" >Опачки</div>
+            <div class="chat-element">
+                <img src="../static/img/noavatar55.png">
+                <div class="chat-element-content">
+                    <div class="chat-element-data">
+                        <div class="name-chat">Ivan</div>
+                        <div class="date-chat">вчера</div>
+                    </div>
+                    <div class="unread-message">Как сам?</div>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div class="another-user">
+        <div class="user-info">
+            <div class="photo-info">
+                <img src="../static/img/noavatar55.png">
+                <div class="about">
+                    <div class="name">Oleg</div>
+                    <div class="status">Online</div>
+                    <div class="user-buttons">
+                        <button>Add contact</button>
+                        <button>sent message</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-info">
+                <div class="number-phone">
+                    <span>Mobile:</span>
+                    <span class="number" >+375295179088</span></div>
+                <span class="user-description">
+                    <span>About:</span>
+                    <span class="text" >
+                            English is a West Germanic language first spoken in early medieval England, which has become
+                            the leading language of international discourse in the 21st ...
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
 </div>
 </body>
 </html>
