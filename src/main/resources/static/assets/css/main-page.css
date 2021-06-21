@@ -5,6 +5,8 @@
 body {
     background: rgba(171, 52, 58, 0.53);
     padding: 40px 0;
+    height: 100%;
+    width: auto;
     color: white;
 }
 
@@ -13,6 +15,7 @@ body {
     display: flex;
     margin: 0 auto;
     width: 750px;
+    height: 928px;
     background: #5b1e31;
     border-radius: 5px;
     padding-bottom: 30px;
@@ -442,4 +445,62 @@ body {
     border-radius: 3px;
     color: rgb(255, 173, 186);
     font-size: 14px;
+}
+
+.container-login {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login .login-box {
+    background: #5b1e31;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 50px;
+    box-shadow: 0 0 5px rgb(0,0,0.2);
+}
+
+.container-login .login-box input {
+    margin-top: 20px;
+    border-radius: 3px;
+    border: none;
+    padding: 14px;
+    color: rgb(255, 128, 142);
+    background: #641c34;
+    font-size: 14px;
+    outline: none
+}
+
+.container-login .login-box .login-buttons {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-login .login-box .title-login {
+    color: rgb(255, 128, 142);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container-login .login-box .login-buttons button {
+    background: rgba(71, 0, 39, 0.62);
+    border: none;
+    border-radius: 3px;
+color: rgb(255, 128, 142);
+    width: 100%;
+    padding: 5px;
+}
+
+.container-login .login-box .login-buttons button:last-child {
+    margin-left: 10px;
+}
+
+.container-login .login-box .login-buttons button:hover {
+    box-shadow: 0 0 2px rgb(255, 128, 142);
 }

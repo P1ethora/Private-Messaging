@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link href="../static/assets/css/main-page.css" rel="stylesheet">
+   <link href="../static/assets/css/main-page.css" rel="stylesheet">
+<!--    <link rel="stylesheet" type="text/css" media="all"-->
+<!--          th:href="@{/assets/css/main-page.css}"/>-->
 
-    <link rel="stylesheet" type="text/css" href="../static/fontawesome/css/all.min.css">
+<!--    <link rel="stylesheet" type="text/css" media="all"-->
+<!--          th:href="@{/fontawesome/css/all.min.css}"/>-->
+   <link rel="stylesheet" type="text/css" href="../static/fontawesome/css/all.min.css">
 
-    <!--    <link rel="stylesheet" type="text/css" media="all"-->
-    <!--          th:href="@{/assets/css/main.css}"/>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script type="text/javascript" src="../static/js/Creator.js"></script>
-    <title>Title</title>
+    <title>WINY</title>
 </head>
 <body>
 <div class="container">
     <div class="left-panel">
         <div class="user-panel">
             <img src="../static/img/noavatar55.png">
+<!--            <img src="/img/noavatar55.png">-->
             <div class="profile">
                 <div class="chat-with">Vasily</div>
                 <div class="number-phone">+375292391133</div>
@@ -141,20 +141,26 @@
             <div class="about-info">
                 <div class="number-phone">
                     <span>Mobile:</span>
-                    <span class="number" >+375295179088</span></div>
-                <span class="user-description">
+                    <span class="number">+375295179088</span>
+                </div>
+                <div class="user-description">
                     <span>About:</span>
-                    <span class="text" >
+                    <span class="text">
                             English is a West Germanic language first spoken in early medieval England, which has become
                             the leading language of international discourse in the 21st ...
-                </span>
+                     </span>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-</div>
-</div>
-</div>
+
 </body>
+
+<!--<script type="text/javascript" th:src="@{/js/Creator.js}"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript" src="../static/js/Creator.js"></script>
 </html>
