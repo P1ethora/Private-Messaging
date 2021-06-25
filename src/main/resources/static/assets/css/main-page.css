@@ -11,6 +11,7 @@ body {
 }
 
 .container {
+    position: relative;
     /*box-shadow: 0 0 5px rgb(0,0,0.1);*/
     display: flex;
     margin: 0 auto;
@@ -490,11 +491,12 @@ body {
 
 .container-login .login-box .login-buttons button {
     background: rgba(71, 0, 39, 0.62);
-    border: none;
     border-radius: 3px;
 color: rgb(255, 128, 142);
     width: 100%;
     padding: 5px;
+    border: 1px solid rgba(71, 0, 39, 0.62);
+    box-shadow: 0 0 4px #470736;
 }
 
 .container-login .login-box .login-buttons button:last-child {
@@ -503,4 +505,40 @@ color: rgb(255, 128, 142);
 
 .container-login .login-box .login-buttons button:hover {
     box-shadow: 0 0 2px rgb(255, 128, 142);
+    border: 1px solid rgba(71, 0, 39, 0.71);
+}
+
+.model {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 120px;
+    height: 30px;
+    background: rgb(71, 0, 39);
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    border: 1px solid #470736;
+    box-shadow: 0 0 5px rgb(0, 0, 0.2);
+}
+
+.model i {
+margin-left: 10px;
+}
+
+.model .model-message{
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.red-point {
+    border-radius: 50%;
+    background: red;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 3px red;
 }

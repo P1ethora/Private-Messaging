@@ -14,17 +14,23 @@
 </head>
 <body>
 <div class="container">
+
+    <div class="model" >
+        <i class="far fa-check-circle"></i>
+        <div class="model-message" >Done</div>
+    </div>
+
     <div class="left-panel">
         <div class="user-panel">
             <img src="../static/img/noavatar55.png">
 <!--            <img src="/img/noavatar55.png">-->
             <div class="profile">
                 <div class="chat-with">Vasily</div>
-                <div class="number-phone">+375292391133</div>
+<!--                <div class="number-phone">+375292391133</div>-->
             </div>
-            <i class="fas fa-bell"></i>
+            <i class="fas fa-bell"><div class="red-point"  ></div></i>
         </div>
-        <div class="line"></div>
+<!--        <div class="line"></div>-->
         <div class="search">
             <input placeholder="search" type="text">
             <!--            <i class="fa fa-search"></i>-->
@@ -132,7 +138,7 @@
                     <div class="name">Oleg</div>
                     <div class="status">Online</div>
                     <div class="user-buttons">
-                        <button>Add contact</button>
+                        <button onclick="addContact()" >Add contact</button>
                         <button>sent message</button>
                     </div>
                 </div>

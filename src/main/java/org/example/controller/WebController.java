@@ -1,16 +1,17 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
+import org.example.service.AuthService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-public class MainController {
+public class WebController {
 
     @GetMapping("/winy")
-    public String getApp(){
+    public String getApp() {
+        
+        return "application";
 
-        return "main-page";
     }
-
 }
