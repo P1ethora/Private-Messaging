@@ -42,7 +42,6 @@ public class JwtTokenProvider {
         claims.put("role", role);
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityMilliseconds * 1000);
-System.out.println("Данные заданы, начинаю строить токен");
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)

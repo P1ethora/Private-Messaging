@@ -3,28 +3,56 @@
 <head>
     <meta charset="UTF-8">
 <!--    <link href="../static/assets/css/main-page.css" rel="stylesheet">-->
+<!--    <link href="../static/assets/css/main-page.css" rel="stylesheet">-->
     <title>WINY</title>
 
         <link rel="stylesheet" type="text/css" media="all"
               th:href="@{/assets/css/main-page.css}"/>
+<!--    <script src='https://cdn.jsdelivr.net/npm/fetch-inject@1.8.1/dist/fetch-inject.es.min.js'></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+<!--    <script src="https://cdn.skypack.dev/pin/ky@v0.28.5-QNkSVhqcJqTZyJaQOB98/mode=imports/optimized/ky.js"></script>-->
 
 </head>
 <body>
-<!--<div class="container-login ">-->
-<!--<div class="login-box" >-->
-<!--    <div class="title-login" >Login</div>-->
-<!--    <input placeholder="mobile" >-->
-<!--    <input type="password" placeholder="password" >-->
-<!--    <div class="login-buttons" >-->
-<!--    <button>Log in</button>-->
-<!--    <button>Sign up</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+
 </body>
 
-<script type="text/javascript" th:src="@{/js/Constructing.js}"></script>
-<script type="text/javascript" th:src="@{/js/Application.js}"></script>
-<script type="text/javascript" th:src="@{/js/Creator.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/auxiliary/AuxiliaryBuilders.js}"></script>
+<script type="text/javascript" th:src="@{/js/Main.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/User.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/Login.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/Application.js}"></script>
 
+<script type="text/javascript" th:src="@{/js/application/view/MainContainer.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/Registration.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/LeftPanel.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/Menu.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/Profile.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/Search.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/UserList.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/left/UserPanel.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/right/RightPanel.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/right/ChatsBox.js}"></script>
+<script type="text/javascript" th:src="@{/js/application/view/right/Chat.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/application/connection/LoginConnect.js}"></script>
+
+
+<!--<script type="text/javascript" src="../static/js/application/auxiliary/AuxiliaryBuilders.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/Main.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/Application.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/Login.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/MainContainer.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/Registration.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/LeftPanel.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/Menu.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/Profile.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/Search.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/UserList.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/left/UserPanel.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/right/RightPanel.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/right/ChatsBox.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/application/view/right/Chat.js"></script>-->
+
+<!--<script type="text/javascript" src="../static/js/application/connection/LoginConnect.js"></script>-->
 </html>
