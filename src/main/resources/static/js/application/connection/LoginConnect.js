@@ -27,7 +27,6 @@ this.#application = application;
             return result.json();
         }).then((res) => {
             if(res.token!=null) {
-                alert(res.token)
                 window.localStorage.setItem('WHINY-key-api', res.token);
                 this.authentication(res.token)
             } else {alert('Incorrect login or password')}
@@ -46,10 +45,9 @@ this.#application = application;
         }).then((result) => {
             return result.json();
         }).then((res) => {
-
                 if(res.firstName!==null) {
                     this.#user = new User(res.id,res.firstName,res.lastName,res.mobile);
-                    this.#application.openMainContainer();
+                    this.#application.openMainContainer(res.contactList,res.chatList);
                 } else {alert('Incorrect token')}
             }
         );

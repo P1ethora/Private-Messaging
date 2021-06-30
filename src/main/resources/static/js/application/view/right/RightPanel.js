@@ -1,13 +1,16 @@
 class RightPanel {
 
     #rightPanel;
-    #activeElementRight;
+    #chatsBox;
+    #chat;
 
     constructor() {
 
-        this.#rightPanel = createNewElement('div','right-panel');
-        this.#activeElementRight = new ChatsBox();
-        this.#rightPanel.appendChild(this.#activeElementRight.view());
+        this.#rightPanel = createNewElement('div', 'right-panel');
+        this.#chatsBox = new ChatsBox();
+        this.#chat = new Chat();
+        this.#rightPanel.appendChild(this.#chatsBox.view());
+        this.#rightPanel.appendChild(this.#chat.view());
 
     }
 
@@ -15,32 +18,38 @@ class RightPanel {
         return this.#rightPanel;
     }
 
-    setActiveElementRight(element) {
-        this.#activeElementRight = element;
+    getChatsBox() {
+        return this.#chatsBox;
     }
 
-    getActiveElementRight() {
-        return this.#activeElementRight;
+    getChat() {
+        return this.#chat;
     }
 
+    openChat() {
+        this.closeChatsBox();
+        this.#chat
+            .view()
+            .style.display = 'flex';
+    }
 
-}
+    closeChatsBox() {
+        this.#chatsBox
+            .view()
+            .style.display = 'none';
+    }
 
+    openChatBox() {
+        this.#chatsBox
+            .view()
+            .style.display = 'flex';
+    }
 
-function createRightPanel() {
-
-    let rightPanel = document.createElement('div');
-    rightPanel.className = 'right-panel';
-
-    let listChatHeader = document.createElement('div');
-    listChatHeader.className = 'list-chats-header';
-    listChatHeader.innerText = 'Your Messaging';
-
-    let listChat = createListChat();
-
-    rightPanel.appendChild(listChatHeader);
-    rightPanel.appendChild(listChat);
-
-    return rightPanel;
+    closeChat() {
+        this.closeChatsBox();
+        this.#chat
+            .view()
+            .style.display = 'none';
+    }
 
 }

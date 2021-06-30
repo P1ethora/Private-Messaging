@@ -167,7 +167,27 @@ body {
 }
 
 .another-user .user-info .photo-info .about .user-buttons{
+    display: flex;
+    justify-content: space-between;
     padding-top: 10px;
+}
+
+.another-user .user-info .photo-info .about .user-buttons button {
+    background: rgba(71, 0, 39, 0.91);
+    border-radius: 3px;
+    color: rgb(255, 128, 142);
+    padding: 5px;
+    width: 80px;
+    font-size: 10px;
+    border: 1px solid rgba(71, 0, 39, 0.91);
+}
+.another-user .user-info .photo-info .about .user-buttons button:last-child {
+    margin-left: 12px;
+}
+
+.another-user .user-info .photo-info .about .user-buttons button:hover{
+    box-shadow: 0 0 4px #470736;
+    border: 1px solid rgba(71, 0, 39, 0.6);
 }
 
 .another-user .user-info .photo-info .about .name{
@@ -207,7 +227,7 @@ body {
 .chat {
     display: none;
     flex-direction: column;
-    /*height: max-content;*/
+    height: 100%;
     width: 490px;
     float: left;
     background: #F2F5F8;
@@ -263,7 +283,7 @@ body {
     padding: 30px 30px 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
-    height: 600px;
+    height: 700px;
 }
 
 .chat .chat-history .message-data {

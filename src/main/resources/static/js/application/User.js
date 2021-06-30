@@ -12,10 +12,6 @@ class User {
         this.#mobile = mobile;
     }
 
-    getToken() {
-       return  window.localStorage.getItem('WHINY-key-api')
-    }
-
     getId() {
         return this.#id;
     }

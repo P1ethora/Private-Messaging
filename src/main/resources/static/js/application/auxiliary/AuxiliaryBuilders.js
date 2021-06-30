@@ -9,3 +9,12 @@ function createNewElement(tagName,className) {
     element.className = className;
     return element;
 }
+
+function getKeyApi() {
+return window.localStorage.getItem('WHINY-key-api');
+}
+
+function setKeyApi(token) {
+    window.localStorage.setItem('WHINY-key-api', token);
+
+}

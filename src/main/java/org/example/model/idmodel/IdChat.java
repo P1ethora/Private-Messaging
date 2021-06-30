@@ -16,6 +16,8 @@ public class IdChat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+    @Column(name = "hashCode")
+    private int hashCode;
     @Column(name = "idchat")
     private long idChat;
     @Column(name = "user_id")
