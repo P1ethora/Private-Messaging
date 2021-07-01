@@ -56,5 +56,20 @@ class Chat {
 
     setChatWitch() {}
 
+    feelingChatHistory(messages, nameCompanion, idCompanion) {
+
+        for(let e of messages){
+
+
+            let message = new Message();
+
+            this.#chatHistory.appendChild(message)
+
+        }
+    }
+
+    clearChatHistory() {
+        this.#chatHistory.innerHTML = '';
+    }
 
 }

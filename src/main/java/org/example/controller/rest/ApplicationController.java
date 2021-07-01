@@ -9,10 +9,8 @@ import org.example.model.request.Contact;
 import org.example.security.JwtTokenProvider;
 import org.example.service.ChatService;
 import org.example.service.UserService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,13 +67,13 @@ public class ApplicationController {
     public ResponseEntity<?> getUser(HttpServletRequest request) {
 
         User user = userService.findById(Long.parseLong(request.getHeader("id")));
-System.out.println(user);
+        System.out.println(user);
         Map<Object, Object> response = new HashMap<>();
         response.put("firstName", user.getFirstName());
         response.put("lastName", user.getLastName());
 //        response.put("photo", user.getUrlPhoto());
         response.put("mobile", user.getMobile());
-        response.put("about","Description");
+        response.put("about", "Description");
 
         return ResponseEntity.ok(response);
     }
@@ -84,23 +82,23 @@ System.out.println(user);
     public ResponseEntity<?> sendMsg(HttpServletRequest request) {
         Map<Object, Object> response = new HashMap<>();
         User user = userService.findByMobile(jwtTokenProvider.getUserName(request.getHeader("Authorization")));
-       User forUser = userService.findById(Long.parseLong(request.getHeader("id")));
+        User forUser = userService.findById(Long.parseLong(request.getHeader("idFor")));
 
-       int hash = chatService.getHashCode(user.getId(),forUser.getId());
-       IdChat idChat = user.getChatList().stream().filter(c->c.getHashCode() == hash).findFirst().orElse(null);
+        int hash = chatService.getHashCode(user.getId(), forUser.getId());
+        IdChat idChat = user.getChatList().stream().filter(c -> c.getHashCode() == hash).findFirst().orElse(null);
 
-       if(idChat!=null) {
+        if (idChat != null) {
 
-Chat chat = chatService.findChatById(idChat.getIdChat());
-response.put("messages",chat.getMessages());
+            Chat chat = chatService.findChatById(idChat.getIdChat());
+            response.put("messages", chat.getMessages());
 
-       }
+        }
 
-       response.put("id",forUser.getId());
-       response.put("firstName",forUser.getFirstName());
-       response.put("lastName",forUser.getLastName());
-       response.put("photo",forUser.getUrlPhoto());
-       response.put("state","Online");
+        response.put("id", forUser.getId());
+        response.put("firstName", forUser.getFirstName());
+        response.put("lastName", forUser.getLastName());
+        response.put("photo", forUser.getUrlPhoto());
+        response.put("state", "Online");
 
 
         return ResponseEntity.ok(response);

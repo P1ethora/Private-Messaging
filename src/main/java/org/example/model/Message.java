@@ -8,6 +8,7 @@ import org.example.model.enumeration.MessageState;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -28,4 +29,6 @@ public class Message {
     private MessageState state;
     @Column(name = "chat_id")
     private long idChat;
+    @Column(name = "date")
+    private Date date;
 }

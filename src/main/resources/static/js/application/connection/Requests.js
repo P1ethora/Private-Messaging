@@ -21,7 +21,7 @@ class Requests {
         });
     }
 
-    openChatThroughUserWindow(idFor,token,) {
+    openChatThroughUserWindow(idFor,token,rightPanel) {
         let rawResponse = fetch('/api/chat', {
             method: 'POST',
             headers: {
@@ -34,8 +34,14 @@ class Requests {
             return result.json();
         }).then((res) =>{
 
+            if(res.messages !== null) {
+                rightPanel.getChat().feelingChatHistory(res.messages)
+            }
+
         });
     }
+
+
 
 
 }
