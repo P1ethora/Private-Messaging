@@ -10,7 +10,7 @@ class Login {
     #buttonLogIn;
     #buttonSignUp;
 
-    constructor() {
+    constructor(application) {
 
         this.#containerLogin = createNewElement('div', 'container-login');
 
@@ -46,6 +46,17 @@ class Login {
         this.#loginBox.appendChild(this.#loginButtons);
 
         this.#containerLogin.appendChild(this.#loginBox);
+
+
+        this.#buttonLogIn.onclick = e=> {
+           let loginConnect = application.getLoginConnect();
+            loginConnect.authorization(this.getValueInputPhone(),
+                this.getValueInputPassword());
+        };
+
+        this.#buttonSignUp.onclick = e => {
+            application.openRegistration();
+        }
     }
 
     view() {

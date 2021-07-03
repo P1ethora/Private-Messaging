@@ -154,7 +154,7 @@ body {
     background: #F2F5F8;
 }
 
-.another-user .user-info .photo-info img{
+.another-user .user-info .photo-info img {
     height: 55px;
     width: 55px;
     border-radius: 50%;
@@ -162,11 +162,11 @@ body {
 }
 
 .another-user .user-info .photo-info .about {
-    margin-left:  auto;
-    margin-right:  auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.another-user .user-info .photo-info .about .user-buttons{
+.another-user .user-info .photo-info .about .user-buttons {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
@@ -181,16 +181,17 @@ body {
     font-size: 10px;
     border: 1px solid rgba(71, 0, 39, 0.91);
 }
+
 .another-user .user-info .photo-info .about .user-buttons button:last-child {
     margin-left: 12px;
 }
 
-.another-user .user-info .photo-info .about .user-buttons button:hover{
+.another-user .user-info .photo-info .about .user-buttons button:hover {
     box-shadow: 0 0 4px #470736;
     border: 1px solid rgba(71, 0, 39, 0.6);
 }
 
-.another-user .user-info .photo-info .about .name{
+.another-user .user-info .photo-info .about .name {
     color: #434651;
 }
 
@@ -219,7 +220,7 @@ body {
     display: flex;
 }
 
-.another-user .user-info .about-info .number-phone .number{
+.another-user .user-info .about-info .number-phone .number {
     margin-left: auto;
     margin-right: auto;
 }
@@ -475,7 +476,14 @@ body {
     align-items: center;
 }
 
-.container-login .login-box {
+.container-reg {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
     background: #5b1e31;
     display: flex;
     margin: auto;
@@ -483,10 +491,11 @@ body {
     justify-content: center;
     border-radius: 5px;
     padding: 50px;
-    box-shadow: 0 0 5px rgb(0,0,0.2);
+    box-shadow: 0 0 5px rgb(0, 0, 0.2);
 }
 
-.container-login .login-box input {
+.login-box input {
+    width: 180px;
     margin-top: 20px;
     border-radius: 3px;
     border: none;
@@ -497,33 +506,33 @@ body {
     outline: none
 }
 
-.container-login .login-box .login-buttons {
+.login-box .login-buttons {
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-.container-login .login-box .title-login {
+.login-box .title-login {
     color: rgb(255, 128, 142);
     font-size: 18px;
     font-weight: bold;
 }
 
-.container-login .login-box .login-buttons button {
+.login-box .login-buttons button {
     background: rgba(71, 0, 39, 0.62);
     border-radius: 3px;
-color: rgb(255, 128, 142);
+    color: rgb(255, 128, 142);
     width: 100%;
     padding: 5px;
     border: 1px solid rgba(71, 0, 39, 0.62);
     box-shadow: 0 0 4px #470736;
 }
 
-.container-login .login-box .login-buttons button:last-child {
+.login-box .login-buttons button:last-child {
     margin-left: 10px;
 }
 
-.container-login .login-box .login-buttons button:hover {
+.login-box .login-buttons button:hover {
     box-shadow: 0 0 2px rgb(255, 128, 142);
     border: 1px solid rgba(71, 0, 39, 0.71);
 }
@@ -544,10 +553,10 @@ color: rgb(255, 128, 142);
 }
 
 .model i {
-margin-left: 10px;
+    margin-left: 10px;
 }
 
-.model .model-message{
+.model .model-message {
     width: 100%;
     margin-left: 10px;
     display: flex;
@@ -561,4 +570,20 @@ margin-left: 10px;
     width: 8px;
     height: 8px;
     box-shadow: 0 0 3px red;
+}
+
+.back-to-login .back-from-login {
+    color: rgb(255, 128, 142);
+    display: flex;
+    width: 99px;
+    border-width: 1px;
+    justify-content: center;
+    background: rgba(71, 0, 39, 0.62);
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow:0 0 4px rgb(71, 7, 54) ;
+}
+.back-to-login .back-from-login:hover {
+    box-shadow: 0 0 2px rgb(255, 128, 142);
+    border: 1px solid rgba(71, 0, 39, 0.71);
 }

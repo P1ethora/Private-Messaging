@@ -37,6 +37,8 @@ public class User {
     @Column(name = "state")
     @Enumerated(value = EnumType.STRING)
     private State state;
+    @Column(name = "about")
+    private String about;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = IdChat.class)
     @JoinColumn(name = "user_id")

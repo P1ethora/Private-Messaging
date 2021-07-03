@@ -6,13 +6,9 @@ class LoginConnect {
 
     constructor(login, user, application) {
         this.#login = login;
-this.#user = user;
-this.#application = application;
+        this.#user = user;
+        this.#application = application;
 
-        this.#login.getButtonLogIn().onclick = e => {
-            this.authorization(this.#login.getValueInputPhone(),
-                this.#login.getValueInputPassword());
-        }
     }
 
     authorization(mobile, password) {
@@ -26,10 +22,12 @@ this.#application = application;
         }).then((result) => {
             return result.json();
         }).then((res) => {
-            if(res.token!=null) {
-                window.localStorage.setItem('WHINY-key-api', res.token);
-                this.authentication(res.token)
-            } else {alert('Incorrect login or password')}
+                if (res.token != null) {
+                    window.localStorage.setItem('WHINY-key-api', res.token);
+                    this.authentication(res.token)
+                } else {
+                    alert('Incorrect login or password')
+                }
             }
         );
     }
@@ -45,10 +43,12 @@ this.#application = application;
         }).then((result) => {
             return result.json();
         }).then((res) => {
-                if(res.firstName!==null) {
-                    this.#user = new User(res.id,res.firstName,res.lastName,res.mobile);
-                    this.#application.openMainContainer(res.contactList,res.chatList);
-                } else {alert('Incorrect token')}
+                if (res.firstName !== null) {
+                    this.#user = new User(res.id, res.firstName, res.lastName, res.mobile);
+                    this.#application.openMainContainer(res.contactList, res.chatList);
+                } else {
+                    alert('Incorrect token')
+                }
             }
         );
     }

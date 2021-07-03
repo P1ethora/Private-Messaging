@@ -3,15 +3,20 @@ package org.example.controller.rest;
 import lombok.AllArgsConstructor;
 import org.example.model.Chat;
 import org.example.model.User;
+import org.example.model.enumeration.userenum.Role;
+import org.example.model.enumeration.userenum.State;
 import org.example.model.idmodel.IdChat;
 import org.example.model.idmodel.IdContactUser;
 import org.example.model.request.Contact;
+import org.example.model.request.RegRequest;
 import org.example.security.JwtTokenProvider;
 import org.example.service.ChatService;
 import org.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,14 +28,15 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@PreAuthorize("hasAuthority('developers:read')")
 @RequestMapping("/api")
 public class ApplicationController {
 
     private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatService chatService;
+    private final PasswordEncoder passwordEncoder;
 
+    @PreAuthorize("hasAuthority('developers:read')")
     @PostMapping("/yourself")
     public ResponseEntity<?> getYourself(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
@@ -62,7 +68,7 @@ public class ApplicationController {
         return ResponseEntity.ok(response);
     }
 
-
+    @PreAuthorize("hasAuthority('developers:read')")
     @PostMapping("/get-user")
     public ResponseEntity<?> getUser(HttpServletRequest request) {
 
@@ -78,6 +84,7 @@ public class ApplicationController {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasAuthority('developers:read')")
     @PostMapping("/chat")
     public ResponseEntity<?> sendMsg(HttpServletRequest request) {
         Map<Object, Object> response = new HashMap<>();
@@ -103,5 +110,67 @@ public class ApplicationController {
 
         return ResponseEntity.ok(response);
 
+    }
+
+
+    @PostMapping("/registration")
+    public ResponseEntity<?> registration(@RequestBody RegRequest request) {
+
+        Map<Object, Object> response = new HashMap<>();
+
+        String firstName = request.getFirstName();
+        String lastName = request.getLastName();
+        String mobile = request.getMobile();
+        String about = request.getAbout();
+        String password = request.getPassword();
+
+        if (firstName == null) {
+            response.put("state", "false");
+            response.put("message", "firstName is empty");
+            return ResponseEntity.ok(response);
+        }
+        if (lastName == null) {
+            response.put("state", "false");
+            response.put("message", "lastName is empty");
+            return ResponseEntity.ok(response);
+        }
+
+        if (mobile == null) {
+            response.put("state", "false");
+            response.put("message", "mobile is empty");
+            return ResponseEntity.ok(response);
+        }
+
+        if (password == null) {
+            response.put("state", "false");
+            response.put("message", "password is empty");
+            return ResponseEntity.ok(response);
+        }
+
+        if(!request.getRepeatPassword().equals(password)) {
+            response.put("state", "false");
+            response.put("message", "Passwords don't match");
+            return ResponseEntity.ok(response);
+        }
+
+        password = passwordEncoder.encode(request.getPassword());
+
+
+
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setRole(Role.USER);
+        user.setMobile(mobile);
+        user.setAbout(about);
+        user.setState(State.ACTIVE);
+        user.setPassword(password);
+
+        userService.saveUser(user);
+
+        response.put("state", "true");
+        response.put("message", "Done");
+
+        return ResponseEntity.ok(response);
     }
 }

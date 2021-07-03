@@ -1,9 +1,7 @@
 window.onload = function () {
-   let body = document.getElementsByTagName('body').item(0);
-
 
 let app = new Application();
-app.startApp(body);
+app.startApp();
 };
 
 

@@ -6,30 +6,30 @@ class Application {
     #registration
     #ability;
     #requests;
+    #loginConnect;
 
     constructor() {
 
         this.#login = new Login();
         this.#requests = new Requests();
+        this.#registration = new Registration(this.#requests,this);
         this.#mainContainer = new MainContainer(this.#ability);
         this.#ability = new Ability(this.#requests,this);
 
-        let loginConnect = new LoginConnect(this.#login,this.#user,this);
+        this.#loginConnect = new LoginConnect(this.#login,this.#user,this);
+        this.#login = new Login(this);
 
     }
 
-    startApp(body) {
-        // if (localStorage.getItem('')===null) {
-            body.appendChild(this.#login.view());
-        // } else {
-        //
-        //     //initial authorization/authentication
-        //     if (true) {
-        //         body.appendChild(this.#mainContainer);
-        //     } else {
-        //         body.appendChild(this.#login);
-        //     }
-        // }
+    startApp() {
+
+            this.openLogin();
+
+    }
+
+    openLogin() {
+        document.body.innerHTML = '';
+        document.body.appendChild(this.#login.view());
     }
 
     openMainContainer(userList, chatList) {
@@ -59,6 +59,19 @@ class Application {
 
     getMainContainer(){
         return this.#mainContainer;
+    }
+
+    openRegistration(){
+        document.body.innerHTML = '';
+        document.body.appendChild(this.#registration.view());
+    }
+
+    getLogin() {
+        return this.#login;
+    }
+
+    getLoginConnect() {
+        return this.#loginConnect;
     }
 
 }

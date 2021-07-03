@@ -12,7 +12,7 @@ class Ability {
 
     openUserWindow(element) {
 let id = element.getAttribute('data-id');
-let selectUser = this.#requests.getSelectUser(id, getKeyApi(),this.#window);
+let selectUser = this.#requests.getSelectUser(id,this.#window);
 this.#window.view().style.display = 'flex';
 
     }
