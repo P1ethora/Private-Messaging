@@ -1,6 +1,5 @@
 class UserWindow {
 
-    #ability;
 
     #userWindow;
     #userInfo;
@@ -23,8 +22,7 @@ class UserWindow {
     #textFieldDescription
     #textDescription
 
-    constructor(ability,rightPanel) {
-        this.#ability = ability;
+    constructor(mainContainer,rightPanel) {
         this.#userWindow = createNewElement('div','another-user');
 
         this.#userInfo = createNewElement('div','user-info');

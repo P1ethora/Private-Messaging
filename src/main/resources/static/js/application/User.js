@@ -28,6 +28,14 @@ class User {
         return this.#mobile;
     }
 
+    setId(id) {
+        this.#id = id;
+    }
+
+    setFirstName(firstName){
+        this.#firstName = firstName;
+    }
+
     setLastName(lastName) {
         this.#lastName = lastName;
     }

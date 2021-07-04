@@ -11,6 +11,7 @@ import org.example.model.request.Contact;
 import org.example.model.request.RegRequest;
 import org.example.security.JwtTokenProvider;
 import org.example.service.ChatService;
+import org.example.service.SearchService;
 import org.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,6 +36,7 @@ public class ApplicationController {
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatService chatService;
     private final PasswordEncoder passwordEncoder;
+    private final SearchService searchService;
 
     @PreAuthorize("hasAuthority('developers:read')")
     @PostMapping("/yourself")
@@ -170,6 +172,22 @@ public class ApplicationController {
 
         response.put("state", "true");
         response.put("message", "Done");
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<?> search(@RequestBody String value) {
+String valueN = value.replace("\"","");
+        Map<Object, Object> response = new HashMap<>();
+
+        String firstName = searchService.getFirstName(valueN);
+        String lastName = searchService.getLastName(firstName,valueN);
+
+        List<User> users = userService.findByFirstNameAndLastName(firstName, lastName);
+        List<Contact> list = searchService.getContactList(users);
+
+        response.put("result",list);
 
         return ResponseEntity.ok(response);
     }

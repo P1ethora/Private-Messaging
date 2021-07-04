@@ -4,9 +4,8 @@ class Profile {
     #nameUser;
 
     constructor() {
-        this.#profile = createNewElement('div','profile')
-        this.#nameUser = createNewElement('div','chat-with')
-        this.#nameUser.innerText = 'Vasily';
+        this.#profile = createNewElement('div','profile');
+        this.#nameUser = createNewElement('div','chat-with');
 
         this.#profile.appendChild(this.#nameUser);
     }
@@ -20,7 +19,7 @@ class Profile {
     }
 
     setNameUser(name) {
-        this.#nameUser = name;
+        this.#nameUser.innerText = name;
     }
 
 }

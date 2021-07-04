@@ -44,7 +44,14 @@ class LoginConnect {
             return result.json();
         }).then((res) => {
                 if (res.firstName !== null) {
-                    this.#user = new User(res.id, res.firstName, res.lastName, res.mobile);
+                    // this.#user = new User(res.id, res.firstName, res.lastName, res.mobile);
+                    this.#user.setFirstName(res.firstName);
+                    this.#user.setLastName(res.lastName);
+                    this.#user.setMobile(res.mobile);
+                    this.#user.setId(res.id);
+
+                    this.#application.getMainContainer().getLeftPanel().getUserPanel().setNameUser();
+
                     this.#application.openMainContainer(res.contactList, res.chatList);
                 } else {
                     alert('Incorrect token')

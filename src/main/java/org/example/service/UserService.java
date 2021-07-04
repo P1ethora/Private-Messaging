@@ -48,4 +48,9 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public List<User> findByFirstNameAndLastName(String firstName, String lastName){
+
+        return userRepo.findAllByFirstNameStartsWithAndLastNameStartsWith(firstName,lastName);
+    }
+
 }

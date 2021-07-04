@@ -5,13 +5,15 @@ class MainContainer {
     #rightPanel;
 
     #userWindows;
+    #requests;
 
-    constructor(ability) {
+    constructor(user, requests) {
 
+        this.#requests = requests;
         this.#main = createNewElement('div','container');
-        this.#leftPanel = new LeftPanel();
+        this.#leftPanel = new LeftPanel(user,this,requests);
         this.#rightPanel = new RightPanel();
-        this.#userWindows = new UserWindow(ability,this.#rightPanel);
+        this.#userWindows = new UserWindow(this,this.#rightPanel);
 
         this.#main.appendChild(this.#leftPanel.getLeftPanel());
         this.#main.appendChild(this.#rightPanel.getRightPanel());
@@ -33,5 +35,11 @@ class MainContainer {
 
     getRightPanel() {
         return this.#rightPanel
+    }
+
+    openUserWindow(element) {
+        let id = element.getAttribute('data-id');
+        this.#requests.getSelectUser(id,this.#userWindows);
+        this.#userWindows.view().style.display = 'flex';
     }
 }

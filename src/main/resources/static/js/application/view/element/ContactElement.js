@@ -1,6 +1,5 @@
 class  ContactElement {
 
-    #ability
     #contactElement;
     #about;
     #img;
@@ -8,9 +7,8 @@ class  ContactElement {
     #status
     #id;
 
-    constructor(id, img, name, ability) {
+    constructor(id, img, name, mainContainer) {
 
-        this.#ability = ability
         this.#contactElement = createNewElement('div', 'user-element');
         this.#contactElement.setAttribute('data-id', id);
         this.#about = createNewElement('div', 'about');
@@ -25,14 +23,14 @@ class  ContactElement {
         this.changeStatus('Offline')
 
         this.#contactElement.onclick = e => {
-            this.#ability.openUserWindow(this.#contactElement);
+            mainContainer.openUserWindow(this.#contactElement);
         };
 
         this.#contactElement.appendChild(this.#img);
         this.#contactElement.appendChild(this.#about);
     }
 
-    getContactElement() {
+    view() {
         return this.#contactElement;
     }
 

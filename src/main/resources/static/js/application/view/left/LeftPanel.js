@@ -5,15 +5,15 @@ class LeftPanel {
     #search;
     #menu;
 
-    constructor() {
+    constructor(user, mainContainer,requests) {
         this.#leftPanel = createNewElement('div','left-panel');
-        this.#userPanel = new UserPanel();
-        this.#search = new Search();
-        this.#menu = new Menu();
+        this.#userPanel = new UserPanel(user);
+        this.#menu = new Menu(mainContainer);
+        this.#search = new Search(requests, this.#menu);
 
         this.#leftPanel.appendChild(this.#userPanel.getUserPanel());
         this.#leftPanel.appendChild(this.#search.getSearch());
-        this.#leftPanel.appendChild(this.#menu.getActiveElement().view());
+        this.#leftPanel.appendChild(this.#menu.view());
     }
 
     getLeftPanel(){

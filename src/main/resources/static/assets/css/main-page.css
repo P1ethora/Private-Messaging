@@ -87,19 +87,19 @@ body {
     outline: none;
 }
 
-.left-panel .users-list {
+.users-list {
     display: flex;
     flex-direction: column;
     height: 770px;
     color: rgb(255, 128, 142);
 }
 
-.left-panel .users-list .user-element:hover {
+.user-element:hover {
     background: rgba(100, 28, 52, 0.77);
     cursor: pointer;
 }
 
-.left-panel .users-list .user-element {
+.user-element {
     display: flex;
     padding: 10px;
 }
@@ -109,7 +109,7 @@ body {
     border: 1px solid white;
 }
 
-.left-panel .users-list .user-element .about {
+.user-element .about {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
@@ -586,4 +586,23 @@ body {
 .back-to-login .back-from-login:hover {
     box-shadow: 0 0 2px rgb(255, 128, 142);
     border: 1px solid rgba(71, 0, 39, 0.71);
+}
+
+.left-box-menu {
+    display: flex;
+    flex-direction: column;
+    height: 770px;
+    color: rgb(255, 128, 142);
+}
+
+.search-result {
+    color: rgb(255, 128, 142);
+}
+
+.title-search {
+    margin-left: 10px;
+}
+
+.result-box {
+    margin-top: 10px;
 }
