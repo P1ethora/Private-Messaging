@@ -1,5 +1,6 @@
 class UserWindow {
 
+    #idContact;
 
     #userWindow;
     #userInfo;
@@ -8,32 +9,32 @@ class UserWindow {
     #about;
     #name;
     #status;
-    #aboutInfo
+    #aboutInfo;
 
     #userButtons;
     #buttonAdd;
     #buttonSendMsg;
 
-    #numberPhone
-    #textFieldPhone
-    #number
+    #numberPhone;
+    #textFieldPhone;
+    #number;
 
-    #userDescription
-    #textFieldDescription
-    #textDescription
+    #userDescription;
+    #textFieldDescription;
+    #textDescription;
 
-    constructor(mainContainer,rightPanel) {
-        this.#userWindow = createNewElement('div','another-user');
+    constructor(mainContainer, rightPanel, requests) {
+        this.#userWindow = createNewElement('div', 'another-user');
 
-        this.#userInfo = createNewElement('div','user-info');
-        this.#photoInfo = createNewElement('div','photo-info');
+        this.#userInfo = createNewElement('div', 'user-info');
+        this.#photoInfo = createNewElement('div', 'photo-info');
 
         this.#imgUser = createImgCirclePhoto();
-        this.#about = createNewElement('div','about');
-        this.#name = createNewElement('div','name');
-        this.#status = createNewElement('div','status');
+        this.#about = createNewElement('div', 'about');
+        this.#name = createNewElement('div', 'name');
+        this.#status = createNewElement('div', 'status');
 
-        this.#userButtons = createNewElement('div','user-buttons');
+        this.#userButtons = createNewElement('div', 'user-buttons');
         this.#buttonAdd = createNewElement('button');
         this.setTextButtonAdd('Add contact')
         this.#buttonSendMsg = createNewElement('button');
@@ -49,20 +50,20 @@ class UserWindow {
         this.#photoInfo.appendChild(this.#imgUser);
         this.#photoInfo.appendChild(this.#about);
 
-        this.#aboutInfo = createNewElement('div','about-info');
+        this.#aboutInfo = createNewElement('div', 'about-info');
 
-        this.#numberPhone = createNewElement('div','number-phone');
+        this.#numberPhone = createNewElement('div', 'number-phone');
         this.#textFieldPhone = document.createElement('span');
         this.setTextFieldPhone('Mobile:');
-        this.#number = createNewElement('span','number');
+        this.#number = createNewElement('span', 'number');
 
         this.#numberPhone.appendChild(this.#textFieldPhone);
         this.#numberPhone.appendChild(this.#number);
 
-        this.#userDescription = createNewElement('div','user-description');
+        this.#userDescription = createNewElement('div', 'user-description');
         this.#textFieldDescription = createNewElement('span');
         this.setTextFieldDescription('About:');
-        this.#textDescription = createNewElement('div','text');
+        this.#textDescription = createNewElement('div', 'text');
 
         this.#userDescription.appendChild(this.#textFieldDescription);
         this.#userDescription.appendChild(this.#textDescription);
@@ -77,18 +78,26 @@ class UserWindow {
 
 
         this.#userWindow.addEventListener('click', e => {
-            if (e.target === this.#userWindow ) {
+            if (e.target === this.#userWindow) {
                 this.#userWindow.style.display = 'none';
             }
         });
 
-        this.#buttonSendMsg.onclick = e=>{
+        this.#buttonSendMsg.onclick = e => {
             rightPanel.openChat();
+        };
+
+        this.#buttonAdd.onclick = e => {
+            requests.addToContact(this.#idContact);
         };
     }
 
     view() {
         return this.#userWindow;
+    }
+
+    setId(id) {
+        this.#idContact = id;
     }
 
     setName(name) {

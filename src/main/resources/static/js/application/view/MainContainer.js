@@ -13,7 +13,7 @@ class MainContainer {
         this.#main = createNewElement('div','container');
         this.#leftPanel = new LeftPanel(user,this,requests);
         this.#rightPanel = new RightPanel();
-        this.#userWindows = new UserWindow(this,this.#rightPanel);
+        this.#userWindows = new UserWindow(this,this.#rightPanel, this.#requests);
 
         this.#main.appendChild(this.#leftPanel.getLeftPanel());
         this.#main.appendChild(this.#rightPanel.getRightPanel());

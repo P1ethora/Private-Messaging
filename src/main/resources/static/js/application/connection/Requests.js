@@ -13,6 +13,7 @@ class Requests {
         }).then((result) => {
             return result.json();
         }).then((res) => {
+            window.setId(id);
             window.setName(res.firstName + ' ' + res.lastName);
             window.setStatus('Online');
             window.setTextPhone(res.mobile);
@@ -82,8 +83,27 @@ class Requests {
             }).then((result) => {
                 return result.json();
             }).then((res) => {
-
+                menu.resetSearchResult();
                 menu.getSearchResult().innerToResultBox(res.result);
+
+            });
+        }
+
+        addToContact(id,menu) {
+
+            fetch('api/add-to-contact', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'id-contact': id,
+                    'Authorization': getKeyApi()
+                }
+            }).then((result) => {
+                return result.json();
+            }).then((res) => {
+
+
 
             });
         }

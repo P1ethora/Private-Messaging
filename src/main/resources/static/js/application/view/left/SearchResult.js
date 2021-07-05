@@ -30,7 +30,6 @@ class SearchResult {
     }
 
     innerToResultBox(listElements) {
-
         for(let el of listElements) {
 
             let contactElement = new ContactElement(el.id,el.img,el.firstName + ' ' + el.lastName, this.#mainContainer);

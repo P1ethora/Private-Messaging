@@ -149,14 +149,13 @@ public class ApplicationController {
             return ResponseEntity.ok(response);
         }
 
-        if(!request.getRepeatPassword().equals(password)) {
+        if (!request.getRepeatPassword().equals(password)) {
             response.put("state", "false");
             response.put("message", "Passwords don't match");
             return ResponseEntity.ok(response);
         }
 
         password = passwordEncoder.encode(request.getPassword());
-
 
 
         User user = new User();
@@ -178,17 +177,44 @@ public class ApplicationController {
 
     @PostMapping("/search")
     public ResponseEntity<?> search(@RequestBody String value) {
-String valueN = value.replace("\"","");
+        String valueN = value.replace("\"", "");
         Map<Object, Object> response = new HashMap<>();
-
+System.out.println(value);
+System.out.println(valueN);
         String firstName = searchService.getFirstName(valueN);
-        String lastName = searchService.getLastName(firstName,valueN);
+        String lastName = searchService.getLastName(firstName, valueN);
+
+        System.out.println(firstName + "  " + lastName  );
 
         List<User> users = userService.findByFirstNameAndLastName(firstName, lastName);
         List<Contact> list = searchService.getContactList(users);
-
-        response.put("result",list);
+System.out.println(users);
+        response.put("result", list);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/add-to-contact")
+    public ResponseEntity<?> addToContact(HttpServletRequest request) {
+System.out.println("Запрос на добавление контакта");
+        Map<Object, Object> response = new HashMap<>();
+
+        User user = userService.findByMobile(jwtTokenProvider.getUserName(request.getHeader("Authorization")));
+        User newContact = userService.findById(Long.parseLong(request.getHeader("id-contact")));
+
+        if (newContact != null) {
+            IdContactUser idContactUser = new IdContactUser();
+            idContactUser.setIdContact(newContact.getId());
+            idContactUser.setIdUser(user.getId());
+            user.getContactList().add(idContactUser);
+            userService.saveUser(user);
+            response.put("state", "true");
+            System.out.println(user);
+        } else {
+
+            response.put("state", "false");
+        }
+        return ResponseEntity.ok(response);
+
     }
 }

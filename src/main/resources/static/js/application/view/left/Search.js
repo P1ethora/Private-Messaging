@@ -11,7 +11,6 @@ class Search {
 
         this.#input.onkeyup = e=> {
             if(this.getValueInput() !== '') {
-            menu.resetSearchResult();
             menu.openSearchResult();
             requests.search(this.#input.value,menu);
             }
