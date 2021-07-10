@@ -1,92 +1,92 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
 import org.example.model.Chat;
 import org.example.model.Message;
 import org.example.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.model.enumeration.MessageState;
+import org.example.model.idmodel.IdChat;
+import org.example.security.JwtTokenProvider;
+import org.example.service.AuthService;
+import org.example.service.ChatService;
+import org.example.service.UserService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 public class MessageController {
 
+    private final UserService userService;
+    private final SimpMessagingTemplate simpMessagingTemplate;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final ChatService chatService;
+
+
     @MessageMapping("/messages/{id}")
-    public void sendMessage(@DestinationVariable int id, Message message) {}
-
-//    @Autowired
-//    private SimpMessagingTemplate simpMessagingTemplate;
+    public void sendMessage(@DestinationVariable int id, Message message, SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
+        Date date = new Date();
+        String token = simpMessageHeaderAccessor.getFirstNativeHeader("Authorization");
+        User user = userService.findByMobile(jwtTokenProvider.getUserName(token));
+        User userFor = userService.findById(id);
+        System.out.println("MESSAGE");
+        Chat chat = null;
+        if (userFor != null && user != null) {
+//            System.out.println(user.getChatList());
+//            int hash = chatService.getHashCode(user.getId(), id);
+//            if (user.getChatList() != null) {
 //
-//    @MessageMapping("/messages/{id}")
-//    public void sendMessage(@DestinationVariable int id, Message message) {
-//        int idUserActual = 1;//Define through session, now this is just an example
-//        int idCompanion = id;
-//        Chat chat = defineSimilarityNewChat(idUserActual, idCompanion);
-//        System.out.println("Чат: " + chat);
-//        User user = User.users.stream().filter(u -> u.getId() == idUserActual).findFirst().orElse(null);
-//        User userFor = null;
-//
-//        if (idUserActual != message.getForLogin()) {
-//            userFor = User.users.stream().filter(u -> u.getId() == message.getForLogin()).findFirst().orElse(null);
-//        }
-//
-//        System.out.println("Сообщение для юзера" + id + " = " + message);
-//        if (chat == null) {
-//            System.out.println("Создаю чат");
-//            chat = new Chat();
-//            chat.setId(Chat.countChat + 1);
-//            Chat.countChat++;
-//            chat.setIdUsers(new int[]{idUserActual, message.getForLogin()});
-//            message.setId(1);
-//            chat.setMessages(new ArrayList<>(List.of(message)));
-//            Chat.chats.add(chat);
-//
-//            user.getChatList().add(chat.getId());
-//            if (idUserActual != message.getForLogin()) {
-//                userFor.getChatList().add(chat.getId());
+//                IdChat idChat = user.getChatList().stream().filter(c -> c.getHashCode() == hash).findFirst().orElse(null);
+//                if(idChat!=null) {
+//                    chat = chatService.findChatById(idChat.getIdChat());
+//                }
+//                if (chat == null) {
+//                    createChat(chat, user, userFor, message, hash);
+//                } else {
+//                    System.out.println("чат существует, просто добавляю сообщение");
+//                    chat.getMessages().add(message);
+//                    chatService.save(chat);
+//                    System.out.println("Теперь чат выглядит так: " + chat);
+//                }
+//            } else {
+//                createChat(chat, user, userFor, message, hash);
 //            }
-//
-//        } else {
-//            System.out.println("чат существует, просто добавляю сообщение");
-//            chat.getMessages().add(message);
-//            System.out.println("Теперь чат выглядит так: " + chat);
-//        }
-//TODO отработать сообщение самому себе;
+System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            String userActualName = user.getFirstName() + " " + user.getLastName();
 
-//        int idChat = chat.getId();
-//        String userActualName = user.getName();
-//        String userCompanionName = userFor!=null ? userFor.getName() : null;
-//
-//        EventMessage eventMessage = new EventMessage(idUserActual, idCompanion, idChat, userActualName, userCompanionName);
-//        simpMessagingTemplate.convertAndSend("/topic/messages/" +
-//                idCompanion, eventMessage);
-//        simpMessagingTemplate.convertAndSend("/topic/messages/" + idCompanion, message);
-//
-//        if(idUserActual != message.getForLogin()) {
-//            EventMessage eventMessage1 = new EventMessage(idUserActual, idCompanion, chat.getId(), userFor.getName(), null);
-//            simpMessagingTemplate.convertAndSend("/topic/messages/" + idUserActual, eventMessage1);
-//        }
-//
-//    }
-//
-//    public boolean checkUser(int idUserActual, Message message) {
-//        return idUserActual != message.getForLogin();
-//    }
-//
-//    public Chat defineSimilarityNewChat(int idActual, int idCompanion) {
-//        int number = hashNumber(idActual, idCompanion);
-//
-//        for (Chat chat : Chat.chats) {
-//            int numberChat = hashNumber(chat.getIdUsers()[0], chat.getIdUsers()[1]);
-//            if (number == numberChat) {
-//                return chat;
-//            }
-//        }
-//        return null;
-//    }
+            message.setNameFrom(userActualName);
+//            message.setIdChat(chat.getId());
+            message.setState(MessageState.UNREAD);
+            message.setDate(date);
+                simpMessagingTemplate.convertAndSendToUser(String.valueOf(userFor.getId()),"/topic/messages/" +
+                        userFor.getId(), message);
+                System.out.println("sender");
+
+        }
+    }
+
+
+    private void createChat(Chat chat, User user, User userFor, Message message, int hash) {
+        System.out.println("Создаю чат");
+        chat = new Chat();
+        chat.setIdUserOne(user.getId());
+        chat.setIdUserTwo(userFor.getId());
+        chat.setMessages(new ArrayList<>(List.of(message)));
+        chatService.save(chat);
+
+        IdChat idChat1 = new IdChat();
+        idChat1.setIdChat(chat.getId());
+        idChat1.setHashCode(hash);
+
+        user.getChatList().add(idChat1);
+        userFor.getChatList().add(idChat1);
+    }
 
 }

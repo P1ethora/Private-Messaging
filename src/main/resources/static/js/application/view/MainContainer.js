@@ -6,19 +6,26 @@ class MainContainer {
 
     #userWindows;
     #requests;
+    #stomp;
 
-    constructor(user, requests) {
+    constructor(user, requests, application) {
+
+        this.#stomp = new StompConnect(application);
 
         this.#requests = requests;
         this.#main = createNewElement('div','container');
         this.#leftPanel = new LeftPanel(user,this,requests);
-        this.#rightPanel = new RightPanel();
+        this.#rightPanel = new RightPanel(this.#stomp);
         this.#userWindows = new UserWindow(this,this.#rightPanel, this.#requests);
 
         this.#main.appendChild(this.#leftPanel.getLeftPanel());
         this.#main.appendChild(this.#rightPanel.getRightPanel());
         this.#main.appendChild(this.#userWindows.view());
 
+    }
+
+    connect(){
+        this.#stomp.connect();
     }
 
     getUserWindows() {

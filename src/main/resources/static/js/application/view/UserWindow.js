@@ -84,7 +84,7 @@ class UserWindow {
         });
 
         this.#buttonSendMsg.onclick = e => {
-            rightPanel.openChat();
+            rightPanel.openChat(this.#idContact);
         };
 
         this.#buttonAdd.onclick = e => {

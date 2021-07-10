@@ -1,3 +1,4 @@
+
 window.onload = function () {
 
 let app = new Application();

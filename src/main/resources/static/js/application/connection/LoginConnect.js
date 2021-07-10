@@ -1,12 +1,10 @@
 class LoginConnect {
 
     #login;
-    #user;
     #application;
 
-    constructor(login, user, application) {
+    constructor(login,application) {
         this.#login = login;
-        this.#user = user;
         this.#application = application;
 
     }
@@ -45,11 +43,10 @@ class LoginConnect {
         }).then((res) => {
                 if (res.firstName !== null) {
                     // this.#user = new User(res.id, res.firstName, res.lastName, res.mobile);
-                    this.#user.setFirstName(res.firstName);
-                    this.#user.setLastName(res.lastName);
-                    this.#user.setMobile(res.mobile);
-                    this.#user.setId(res.id);
-
+                    this.#application.getUser().setFirstName(res.firstName);
+                    this.#application.getUser().setLastName(res.lastName);
+                    this.#application.getUser().setMobile(res.mobile);
+                    this.#application.getUser().setId(res.id);
                     this.#application.getMainContainer().getLeftPanel().getUserPanel().setNameUser();
 
                     this.#application.openMainContainer(res.contactList, res.chatList);

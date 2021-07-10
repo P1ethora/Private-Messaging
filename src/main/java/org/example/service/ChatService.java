@@ -20,5 +20,8 @@ public class ChatService {
         return chatRepo.findById(id).orElse(null);
     }
 
+public void save(Chat chat) {
+        chatRepo.save(chat);
+}
 
 }

@@ -10,12 +10,11 @@ class Application {
     constructor() {
 
         this.#user = new User();
-        this.#login = new Login();
         this.#requests = new Requests();
         this.#registration = new Registration(this.#requests,this);
-        this.#mainContainer = new MainContainer(this.#user,this.#requests);
+        this.#mainContainer = new MainContainer(this.#user,this.#requests,this);
 
-        this.#loginConnect = new LoginConnect(this.#login,this.#user,this);
+        this.#loginConnect = new LoginConnect(this.#login,this);
         this.#login = new Login(this);
 
     }
@@ -33,6 +32,7 @@ class Application {
 
     openMainContainer(userList, chatList) {
         document.body.innerHTML = '';
+        this.#mainContainer.connect();
         this.fillingContainer(userList,chatList)
         document.body.appendChild(this.#mainContainer.getMain());
     }
@@ -71,6 +71,10 @@ class Application {
 
     getLoginConnect() {
         return this.#loginConnect;
+    }
+
+    getUser() {
+       return this.#user;
     }
 
 }

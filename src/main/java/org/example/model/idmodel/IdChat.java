@@ -18,7 +18,7 @@ public class IdChat {
     private long id;
     @Column(name = "hashCode")
     private int hashCode;
-    @Column(name = "idchat")
+    @Column(name = "idChat")
     private long idChat;
     @Column(name = "user_id")
     private long userId;

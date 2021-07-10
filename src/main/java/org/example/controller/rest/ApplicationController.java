@@ -166,6 +166,8 @@ public class ApplicationController {
         user.setAbout(about);
         user.setState(State.ACTIVE);
         user.setPassword(password);
+        user.setChatList(new ArrayList<>());
+        user.setContactList(new ArrayList<>());
 
         userService.saveUser(user);
 

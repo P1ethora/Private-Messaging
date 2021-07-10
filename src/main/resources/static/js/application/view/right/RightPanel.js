@@ -4,11 +4,11 @@ class RightPanel {
     #chatsBox;
     #chat;
 
-    constructor() {
+    constructor(stomp) {
 
         this.#rightPanel = createNewElement('div', 'right-panel');
         this.#chatsBox = new ChatsBox();
-        this.#chat = new Chat();
+        this.#chat = new Chat(stomp);
         this.#rightPanel.appendChild(this.#chatsBox.view());
         this.#rightPanel.appendChild(this.#chat.view());
 
@@ -26,8 +26,9 @@ class RightPanel {
         return this.#chat;
     }
 
-    openChat() {
+    openChat(idWith) {
         this.closeChatsBox();
+        this.#chat.setIdWith(idWith);
         this.#chat
             .view()
             .style.display = 'flex';

@@ -1,5 +1,6 @@
 class Chat {
 
+    #idWith;
     #chat;
     #chatHeader;
 
@@ -16,7 +17,7 @@ class Chat {
     #textArea;
     #btnSend;
 
-    constructor() {
+    constructor(stomp) {
         this.#chat = createNewElement('div','chat');
         this.#chatHeader = createNewElement('div','chat-header');
 
@@ -48,6 +49,14 @@ class Chat {
         this.#chat.appendChild(this.#chatHeader);
         this.#chat.appendChild(this.#chatHistory);
         this.#chat.appendChild(this.#chatMessage);
+
+        this.#btnSend.onclick = e => {
+            stomp.sendMsg(this.#idWith, this.#textArea.value);
+        };
+    }
+
+    setIdWith(idWith) {
+        this.#idWith = idWith;
     }
 
     view(){
