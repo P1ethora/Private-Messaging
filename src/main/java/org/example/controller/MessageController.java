@@ -7,7 +7,6 @@ import org.example.model.User;
 import org.example.model.enumeration.MessageState;
 import org.example.model.idmodel.IdChat;
 import org.example.security.JwtTokenProvider;
-import org.example.service.AuthService;
 import org.example.service.ChatService;
 import org.example.service.UserService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -32,6 +31,7 @@ public class MessageController {
 
     @MessageMapping("/messages/{id}")
     public void sendMessage(@DestinationVariable int id, Message message, SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
+      //TODO EXCEPTIONS IN SHOW USER CHAT LIST
         Date date = new Date();
         String token = simpMessageHeaderAccessor.getFirstNativeHeader("Authorization");
         User user = userService.findByMobile(jwtTokenProvider.getUserName(token));
@@ -39,26 +39,25 @@ public class MessageController {
         System.out.println("MESSAGE");
         Chat chat = null;
         if (userFor != null && user != null) {
-//            System.out.println(user.getChatList());
-//            int hash = chatService.getHashCode(user.getId(), id);
-//            if (user.getChatList() != null) {
-//
-//                IdChat idChat = user.getChatList().stream().filter(c -> c.getHashCode() == hash).findFirst().orElse(null);
-//                if(idChat!=null) {
-//                    chat = chatService.findChatById(idChat.getIdChat());
-//                }
-//                if (chat == null) {
-//                    createChat(chat, user, userFor, message, hash);
-//                } else {
-//                    System.out.println("чат существует, просто добавляю сообщение");
-//                    chat.getMessages().add(message);
-//                    chatService.save(chat);
-//                    System.out.println("Теперь чат выглядит так: " + chat);
-//                }
-//            } else {
-//                createChat(chat, user, userFor, message, hash);
-//            }
-System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println(user.getChatList());
+            int hash = chatService.getHashCode(user.getId(), id);
+            if (user.getChatList() != null) {
+
+                IdChat idChat = user.getChatList().stream().filter(c -> c.getHashCode() == hash).findFirst().orElse(null);
+                if(idChat!=null) {
+                    chat = chatService.findChatById(idChat.getIdChat());
+                }
+                if (chat == null) {
+                    createChat(chat, user, userFor, message, hash);
+                } else {
+                    System.out.println("чат существует, просто добавляю сообщение");
+                    chat.getMessages().add(message);
+                    chatService.save(chat);
+                    System.out.println("Теперь чат выглядит так: " + chat);
+                }
+            } else {
+                createChat(chat, user, userFor, message, hash);
+            }
             String userActualName = user.getFirstName() + " " + user.getLastName();
 
             message.setNameFrom(userActualName);

@@ -18,14 +18,14 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
-System.out.println("user " + sha.getUser().getName() +" was connected");
-        if(sha.getUser().getName().equals("2")){
+//System.out.println("user " + sha.getUser().getName() +" was connected");
+//        if(sha.getUser().getName().equals("2")){
             simpUserRegistry.getUsers();
 
-        }
 
-        System.out.println(simpUserRegistry.getUser(sha.getUser().getName()));
-        System.out.println(simpUserRegistry.getUsers());
+
+//        System.out.println(simpUserRegistry.getUser(sha.getUser().getName()));
+//        System.out.println(simpUserRegistry.getUsers());
 
     }
 
